@@ -8,12 +8,14 @@ import { collection, getDocs } from 'firebase/firestore';
 function TinderCards() {
   const [people, setPeople] = useState([]);
   useEffect(() => {
-    const peopleCollectionRef = collection(db, "people");
-    const getPeople = async () => {
+    const unsubscribe = async () => {
+      const peopleCollectionRef = collection(db, "people");
       const data = await getDocs(peopleCollectionRef);
-      setPeople(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
+      setPeople(data.docs.map((doc) => ({ ...doc.data() })))
     }
-    getPeople();
+    return () => {
+      unsubscribe();
+    }
   }, []);
 
   return (

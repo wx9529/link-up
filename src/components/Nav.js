@@ -1,12 +1,13 @@
 import logo from "../img/example.png"
 
-const Nav = ({minimal, authToken, setShowModal}) => {
+const Nav = ({minimal, authToken, setShowModal, showModal, setIsSignUp}) => {
 
   // switch logo picture with minimal
   // const minimal = false
   // src= {minimal ? logo1 : logo2}
   const handleClick = () =>{
     setShowModal(true)
+    setIsSignUp(false)
   }
 
   return (
@@ -14,7 +15,7 @@ const Nav = ({minimal, authToken, setShowModal}) => {
     <div class="logo-container">
       <img className="logo" src={logo}/>
     </div>
-    {!authToken && !minimal && <button className= "nav-button" onClick={handleClick}>
+    {!authToken && !minimal && <button className= "nav-button" onClick={handleClick} disabled={showModal}>
       Log in</button>}
     </nav>
   )

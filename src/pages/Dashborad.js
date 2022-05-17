@@ -40,6 +40,7 @@ const Dashboard = () => {
   const outOfFrame = (name) => {
     console.log(name + ' left the screen!')
   }
+  
   return (
     <div className="dashboard">
       <ChatContainer />

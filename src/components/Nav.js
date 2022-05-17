@@ -1,4 +1,6 @@
 import logo from "../img/example.png"
+import { useState } from "react"
+import Home from "../pages/Home"
 
 const Nav = ({authToken, setShowModal, showModal, setIsSignUp}) => {
 
@@ -9,15 +11,17 @@ const Nav = ({authToken, setShowModal, showModal, setIsSignUp}) => {
     setShowModal(true)
     setIsSignUp(false)
   }
-
+  
   return (
     <nav>
     <div class="logo-container">
       <img className="logo" src={logo}/>
     </div>
-    {!authToken && <button className= "nav-button" onClick={handleClick} disabled={showModal}>
-      Log in</button>}
+
+    {!authToken? <button className= "nav-button" onClick={handleClick} disabled={showModal}>
+      Log in</button> : <button className="log-out">Sign Out</button>}
     </nav>
+
   )
 }
 export default Nav

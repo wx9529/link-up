@@ -30,8 +30,6 @@ const OnBoarding = () => {
 
   return (
     <>
-      <Nav setShowModal={() => { }}
-        showModal={false} />
       <div className="onboarding">
         <h2>Post Your Car</h2>
         <form onSubmit={handleSubmit}>

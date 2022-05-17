@@ -2,6 +2,7 @@ import { Routes, Route, BrowserRouter } from "react-router-dom";
 import Home from "./pages/Home";
 import Dashboard from './pages/Dashborad';
 import OnBoarding from './pages/OnBoarding';
+import Individual from "./components/Individual";
 import React from "react";
 
 function App() {

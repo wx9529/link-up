@@ -8,7 +8,7 @@ const ChatHeader = () => {
       </div>
       <h3>userName</h3>
     </div>
-      <FontAwesomeIcon icon="fa-solid fa-arrow-left" className="log-out-icon" />
+      <i class="fa-solid fa-xmark"></i>
     </div>
     )
 }

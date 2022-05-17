@@ -127,3 +127,38 @@ nav.logo-container .logo {
   margin: 8px;
   font-size: 17px;
 }
+/* onBoarding */
+.onboarding {
+  border-top: solid 1px rgb(154,154,154)
+}
+.onboarding form {
+  display: flex;
+  justify-content: center;
+}
+
+.onboarding form section {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  width: 35%;
+  text-align: start;
+}
+.onboarding form input {
+  padding: 15px 30px;
+  margin: 10px 0;
+  font-size: 15px;
+  border: solid 2px rgb(219,219,219);
+  border-radius: 10px;
+}
+.onboarding form label {
+  margin: 10px 0;
+}
+.onboarding form input[type="submit"]:hover {
+  background-color: rgb(235,235,235);
+}
+.onboarding form input[type="submit"]:active {
+  background-color: rgb(226, 115, 155);
+}
+.onboarding form .photo-container {
+  width:100%;
+}

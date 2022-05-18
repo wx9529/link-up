@@ -1,7 +1,8 @@
-import Car from "./Car"
-import OnBoarding from "../pages/OnBoarding"
-import Dashboard from "../pages/Dashborad"
+import Car from "../components/Car"
+import OnBoarding from "./OnBoarding"
+import Dashboard from "./Dashborad"
 import { useState } from "react"
+import Nav from "../components/Nav"
 
 const Individual = () => {
 
@@ -24,8 +25,24 @@ const Individual = () => {
     setDiscover(true)
   }
 
+  const [showModal, setShowModal] = useState(false)
+  const [isSignUp, setIsSignUp] = useState(true)
+
+  const authToken = true;
+
+  const handleClick = () => {
+    setShowModal(true)
+    setIsSignUp(true)
+  }
+
 
   return (
+    <>
+     <Nav authToken={authToken}
+        setShowModal={setShowModal}
+        showModal={showModal}
+        setIsSignUp={setIsSignUp}
+      />
       <div className="individual">
         <button className="primary-button" onClick={listClick}>Car List</button>
         <button className="primary-button" onClick={postClick}>Post a New Car</button>
@@ -44,6 +61,7 @@ const Individual = () => {
           </div>
       }
       </div>
+    </>
   )
 }
 

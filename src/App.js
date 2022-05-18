@@ -2,7 +2,7 @@ import { Routes, Route, BrowserRouter } from "react-router-dom";
 import Home from "./pages/Home";
 import Dashboard from './pages/Dashborad';
 import OnBoarding from './pages/OnBoarding';
-import Individual from "./components/Individual";
+import Individual from "./pages/Individual";
 import React from "react";
 
 function App() {
@@ -10,9 +10,10 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Home/>} />
+          <Route path="/" element={<Home />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/onboarding" element={<OnBoarding />} />
+          <Route path="/individual" element={<Individual />}/>
         </Routes>
       </BrowserRouter>
     </div >

@@ -58,6 +58,8 @@ nav {
 }
 
 nav .nav-button {
+  height:70px;
+  width:113px;
   color: rgb(254, 48, 114);
   background-color: rgb(255,255,255);
   font-size: 20px;
@@ -261,3 +263,27 @@ nav.logo-container .logo {
   padding:20px;
   
 }
+/* car display */
+.car-container {
+  display:flex;
+  flex-direction: column;
+}
+.car-container {
+  display: flex;
+  align-items: center;
+}
+.car-container .car-photos {
+  height: 350px;
+  width: 450px;
+  margin-top: 30px;
+}
+
+/* individual */
+.individual {
+  margin-top: -260px;
+}
+.individual .primary-button {
+    padding: 12px 30px;
+    margin: 50px;
+}
+

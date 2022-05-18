@@ -4,12 +4,12 @@ import Home from "../pages/Home"
 
 const Nav = ({authToken, setShowModal, showModal, setIsSignUp}) => {
 
-  // switch logo picture with minimal
-  // const minimal = false
-  // src= {minimal ? logo1 : logo2}
-  const handleClick = () =>{
+  const handleClick = () => {
     setShowModal(true)
     setIsSignUp(false)
+  }
+  const logOutClick = () => {
+    authToken = false
   }
   
   return (
@@ -19,7 +19,7 @@ const Nav = ({authToken, setShowModal, showModal, setIsSignUp}) => {
     </div>
 
     {!authToken? <button className= "nav-button" onClick={handleClick} disabled={showModal}>
-      Log in</button> : <button className="log-out">Sign Out</button>}
+        Log in</button> : <button className="nav-button" onClick={logOutClick}>Sign Out</button>}
     </nav>
 
   )

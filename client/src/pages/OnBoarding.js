@@ -1,5 +1,5 @@
 import Nav from '../components/Nav';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useCookies } from 'react-cookie';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
@@ -7,23 +7,56 @@ import axios from 'axios';
 const OnBoarding = () => {
     const [cookies, setCookie, removeCookie] = useCookies(null)
     const [formData, setFormData] = useState({
-        user_id: cookies.UserId,
-        first_name: "",
-        url: "",
-        cars:[],
-        matches: [],
+        model: '',
+        url: '',
+        year: '',
+        price: ''
     })
+    const [cars, setCars] = useState([]);
 
-    let navigate = useNavigate()
+    useEffect(() => {
+        getCarInfo();
+    }, [])
+
+    let navigate = useNavigate();
+
+    const getCarInfo = async () => {
+        const user_id = cookies.UserId;
+        try {
+            const response = await axios.get('http://localhost:8000/cars', { params: { user_id } });
+            console.log('response.data', response.data);
+            setCars([...response.data.cars]);
+        } catch (err) {
+            console.log(err);
+        }
+    }
+    const deleteACar = async (id) => {
+        const user_id = cookies.UserId;
+        try {
+            const carArray = [...cars];
+            const response = await axios.delete('http://localhost:8000/cars', { params: { id, user_id } });
+            carArray.splice(id, 1);
+            console.log('carid', id);
+            console.log('carArray', carArray);
+            setCars([...carArray]);
+        } catch (err) {
+            console.log(err);
+        }
+    }
 
     const handleSubmit = async (e) => {
         console.log('submitted');
+        const user_id = cookies.UserId;
+        const id = cars.length.toString();
+        console.log('id', id);
         e.preventDefault();
         try {
-            const response = await axios.put('http://localhost:8000/user', { formData });
+            const response = await axios.put('http://localhost:8000/cars', { formData, user_id, id });
             console.log(response);
             const success = response.status === 200;
-            if (success) navigate('/dashboard');
+            const newCar = { ...formData, id };
+            console.log('newCar', newCar);
+            setCars((prevState) => [...prevState, newCar]);
         } catch (err) {
             console.log(err);
         }
@@ -59,10 +92,10 @@ const OnBoarding = () => {
                         <input
                             id="Model"
                             type='text'
-                            name="Model"
+                            name="model"
                             placeholder="Model"
                             required={true}
-                            value={formData.Model}
+                            value={formData.model}
                             onChange={handleChange}
                         />
 
@@ -70,10 +103,10 @@ const OnBoarding = () => {
                         <input
                             id="Price"
                             type='text'
-                            name="Price"
+                            name="price"
                             placeholder="Price"
                             required={true}
-                            value={formData.Price}
+                            value={formData.price}
                             onChange={handleChange}
                         />
 
@@ -82,10 +115,10 @@ const OnBoarding = () => {
                         <input
                             id="Year"
                             type="text"
-                            name="Year"
+                            name="year"
                             required={true}
                             placeholder="Year"
-                            value={formData.Year}
+                            value={formData.year}
                             onChange={handleChange}
                         />
 
@@ -105,11 +138,19 @@ const OnBoarding = () => {
                         <div className="photo-container">
                             {formData.url && <img src={formData.url} alt="profile pic preview" />}
                         </div>
-
-
                     </section>
-
                 </form>
+            </div>
+            <h3>Car Posted</h3>
+            <div className="card-container">
+                {cars.map((car) =>
+                    <div key={car.id}>
+                        <div style={{ backgroundImage: 'url(' + car.url + ')' }} className='card'>
+                        </div>
+                        <h3> {car.model}({car.year}) </h3>
+                        <h3>${car.price}</h3>
+                        <button type="submit" onClick={() => deleteACar(car.id)} >Delete</button>
+                    </div>)}
             </div>
         </>
     )

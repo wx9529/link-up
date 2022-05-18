@@ -31,8 +31,8 @@ const AuthModal = ({ setShowModal, isSignUp }) => {
             setCookie('UserId', response.data.userId);
 
             const success = response.status === 201;
-            if (success && isSignUp) navigate('/onboarding');
-            if (success && !isSignUp) navigate('/dashboard');
+            if (success && isSignUp) navigate('/individual');
+            if (success && !isSignUp) navigate('/individual');
 
         } catch (error) {
             console.log(error)

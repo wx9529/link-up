@@ -3,6 +3,8 @@ import { useEffect, useState } from 'react';
 import { useCookies } from 'react-cookie';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import Car from '../components/Car';
+import Dashboard from './Dashboard';
 
 const OnBoarding = () => {
     const [cookies, setCookie, removeCookie] = useCookies(null)
@@ -76,13 +78,6 @@ const OnBoarding = () => {
 
     return (
         <>
-            <Nav
-                minimal={true}
-                setShowModal={() => {
-                }}
-                showModal={false}
-            />
-
             <div className="onboarding">
                 <h2>UPLOAD CARS</h2>
 
@@ -156,3 +151,13 @@ const OnBoarding = () => {
     )
 }
 export default OnBoarding
+
+
+
+
+
+
+
+
+
+

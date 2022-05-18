@@ -1,23 +1,23 @@
-import Home from './pages/Home'
-import Dashboard from './pages/Dashboard'
-import OnBoarding from './pages/OnBoarding'
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import { useCookies } from 'react-cookie'
+import { Routes, Route, BrowserRouter } from "react-router-dom";
+import Home from "./pages/Home";
+import Dashboard from './pages/Dashboard';
+import OnBoarding from './pages/OnBoarding';
+import Individual from "./pages/Individual";
+import React from "react";
 
-const App = () => {
-  const [cookies, setCookie, removeCookie] = useCookies(['user'])
-
-  const authToken = cookies.AuthToken
-
+function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/onboarding" element={<OnBoarding />} />
-      </Routes>
-    </BrowserRouter>
-  )
+    <div className="App">
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/onboarding" element={<OnBoarding />} />
+          <Route path="/individual" element={<Individual />} />
+        </Routes>
+      </BrowserRouter>
+    </div >
+  );
 }
 
-export default App
+export default App;

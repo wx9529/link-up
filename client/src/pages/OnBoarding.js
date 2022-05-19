@@ -20,7 +20,6 @@ const OnBoarding = () => {
         getCarInfo();
     }, [])
 
-    let navigate = useNavigate();
 
     const getCarInfo = async () => {
         const user_id = cookies.UserId;
@@ -28,19 +27,6 @@ const OnBoarding = () => {
             const response = await axios.get('http://localhost:8000/cars', { params: { user_id } });
             console.log('response.data', response.data);
             setCars([...response.data.cars]);
-        } catch (err) {
-            console.log(err);
-        }
-    }
-    const deleteACar = async (id) => {
-        const user_id = cookies.UserId;
-        try {
-            const carArray = [...cars];
-            const response = await axios.delete('http://localhost:8000/cars', { params: { id, user_id } });
-            carArray.splice(id, 1);
-            console.log('carid', id);
-            console.log('carArray', carArray);
-            setCars([...carArray]);
         } catch (err) {
             console.log(err);
         }
@@ -135,17 +121,6 @@ const OnBoarding = () => {
                         </div>
                     </section>
                 </form>
-            </div>
-            <h3>Car Posted</h3>
-            <div className="card-container">
-                {cars.map((car) =>
-                    <div key={car.id}>
-                        <div style={{ backgroundImage: 'url(' + car.url + ')' }} className='card'>
-                        </div>
-                        <h3> {car.model}({car.year}) </h3>
-                        <h3>${car.price}</h3>
-                        <button type="submit" onClick={() => deleteACar(car.id)} >Delete</button>
-                    </div>)}
             </div>
         </>
     )

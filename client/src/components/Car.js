@@ -1,36 +1,51 @@
-const db = [
-  {
-    name: 'Richard Hendricks',
-    year: '2021',
-    make: 'audi',
-    model: 'R8',
-    price: 130000,
-    url: 'https://images.unsplash.com/photo-1612468008274-9445bd56161e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8Y29vbCUyMGNhcnxlbnwwfHwwfHw%3D&w=1000&q=80'
-  },
-  {
-    name: 'Richard Hendricks',
-    year: '2021',
-    make: 'audi',
-    model: 'R8',
-    price: 150000,
-    url: 'https://images.unsplash.com/photo-1612468008274-9445bd56161e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8Y29vbCUyMGNhcnxlbnwwfHwwfHw%3D&w=1000&q=80'
-  }
-]
+import { useCookies } from 'react-cookie';
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const Car = () => {
+  const [cookies, setCookie, removeCookie] = useCookies(null)
+  const [cars, setCars] = useState([]);
 
-  const cars = db
+  useEffect(() => {
+    getCarInfo();
+  }, [])
+
+  const getCarInfo = async () => {
+    const user_id = cookies.UserId;
+    try {
+      const response = await axios.get('http://localhost:8000/cars', { params: { user_id } });
+      console.log('response.data', response.data);
+      setCars([...response.data.cars]);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  const deleteACar = async (id) => {
+    const user_id = cookies.UserId;
+    try {
+      const carArray = [...cars];
+      const response = await axios.delete('http://localhost:8000/cars', { params: { id, user_id } });
+      carArray.splice(id, 1);
+      console.log('carid', id);
+      console.log('carArray', carArray);
+      setCars([...carArray]);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
 
   return (
 
     <div className="car-display">
       {cars.map((car) =>
-        <div className="car-container">
+        <div key={car.id} className="car-container">
           <img className="car-photos" src={car.url} />
-          <h3>{car.year} <br />{car.make} {car.model} <br />${car.price}</h3>
+          <h3>{car.year} <br /> {car.model} <br />${car.price}</h3>
           <div className="car-list-button">
-            <button className="secondary-button">Update</button>
-            <button className="secondary-button">Delete</button>
+            <button className="secondary-button" onClick={() => { deleteACar(car.id) }}>Delete</button>
           </div>
         </div>
       )}

@@ -1,9 +1,22 @@
-import logo from "../img/example.png"
-import { useState } from "react"
+import logo from "../img/example.png";
+import { useCookies } from "react-cookie";
+import {
+  Link
+} from "react-router-dom";
+
 
 const Nav = ({ authToken, setShowModal, showModal, setIsSignUp }) => {
-
-  const handleClick = () => {
+  const [cookies, setCookie, removeCookie] = useCookies(['user']);
+  const handleSignOut = () => {
+    if (authToken) {
+      removeCookie('UserId', cookies.UserId);
+      removeCookie('AuthToken', cookies.AuthToken);
+      return
+    }
+    setShowModal(true);
+    setIsSignUp(true);
+  }
+  const handleSignIn = () => {
     setShowModal(true)
     setIsSignUp(false)
   }
@@ -13,11 +26,9 @@ const Nav = ({ authToken, setShowModal, showModal, setIsSignUp }) => {
       <a class="logo-container" href="http://localhost:3000/">
         <img className="logo" src={logo} />
       </a>
-
-      {!authToken ? <button className="nav-button" onClick={handleClick} disabled={showModal}>
-        Log in</button> : <button className="nav-button" onClick={() => { }}>Sign Out</button>}
+      {!authToken ? <button className="nav-button" onClick={handleSignIn} disabled={showModal}>
+        Log in</button> : <Link to="/"><button className="nav-button" onClick={handleSignOut}>Sign Out</button></Link>}
     </nav>
-
   )
 }
 export default Nav

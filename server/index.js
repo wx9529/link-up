@@ -19,7 +19,7 @@ app.get('/', (req, res) => {
 
 app.post('/signup', async (req, res) => {
   const client = new MongoClient(url);
-  const { email, password } = req.body;
+  const { email, password, firstname, lastname } = req.body;
 
   const generateduserId = uuidv4();
   const hashedpassword = await bcrypt.hash(password, 10);
@@ -38,6 +38,8 @@ app.post('/signup', async (req, res) => {
 
     const data = {
       user_id: generateduserId,
+      firstname,
+      lastname,
       email: sanitizedEamil,
       hashed_password: hashedpassword
     }
@@ -91,33 +93,33 @@ app.get('/users', async (req, res) => {
 })
 
 
-app.put('/user', async (req, res) => {
-  const client = new MongoClient(url);
-  const formData = req.body.formData;
-  try {
-    await client.connect();
-    const database = client.db('app-data');
-    const users = database.collection('users');
+// app.put('/user', async (req, res) => {
+//   const client = new MongoClient(url);
+//   const formData = req.body.formData;
+//   try {
+//     await client.connect();
+//     const database = client.db('app-data');
+//     const users = database.collection('users');
 
-    const query = { user_id: formData.user_id };
-    const updateDocument = {
-      $set: {
-        first_name: formData.first_name,
-        matches: formData.matches,
-        cars: [{
-          model: formData.Model,
-          year: formData.Year,
-          price: formData.Price,
-          url: formData.url
-        }]
-      },
-    }
-    const insertedUser = await users.updateOne(query, updateDocument);
-    res.send(insertedUser);
-  } finally {
-    await client.close();
-  }
-})
+//     const query = { user_id: formData.user_id };
+//     const updateDocument = {
+//       $set: {
+//         first_name: formData.first_name,
+//         matches: formData.matches,
+//         cars: [{
+//           model: formData.Model,
+//           year: formData.Year,
+//           price: formData.Price,
+//           url: formData.url
+//         }]
+//       },
+//     }
+//     const insertedUser = await users.updateOne(query, updateDocument);
+//     res.send(insertedUser);
+//   } finally {
+//     await client.close();
+//   }
+// })
 
 //Get all cars in the database
 app.get('/cars', async (req, res) => {

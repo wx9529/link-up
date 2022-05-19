@@ -1,10 +1,9 @@
-import Car from "../components/Car"
-import OnBoarding from "./OnBoarding"
-import Dashboard from "./Dashboard"
-import { useState } from "react"
-import { useCookies } from "react-cookie"
-import AuthModal from "../components/AuthModal"
-import Nav from "../components/Nav"
+import Car from "../components/Car";
+import OnBoarding from "./OnBoarding";
+import Dashboard from "./Dashboard";
+import { useState } from "react";
+import { useCookies } from "react-cookie";
+import Nav from "../components/Nav";
 
 const Individual = () => {
   const [showModal, setShowModal] = useState(false);
@@ -34,11 +33,12 @@ const Individual = () => {
 
   return (
     <div className="overlay">
-      <Nav authToken={authToken}
-        minimal={false}
+      <Nav
+        authToken={authToken}
         setShowModal={setShowModal}
         showModal={showModal}
-        setIsSignUp={setIsSignUp} />
+        setIsSignUp={setIsSignUp}
+      />
       <div className="individual">
         <button className="primary-button" onClick={listClick}>Car List</button>
         <button className="primary-button" onClick={postClick}>Post a New Car</button>

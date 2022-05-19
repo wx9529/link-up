@@ -49,22 +49,22 @@ const AuthModal = ({ setShowModal, isSignUp }) => {
             <h2>{isSignUp ? 'CREATE ACCOUNT' : 'LOG IN'}</h2>
             <p>By clicking Log In, you agree to our terms. Learn how we process your data in our Privacy Policy and Cookie Policy.</p>
             <form onSubmit={handleSubmit}>
-                <input
+                {isSignUp && <input
                     type="name"
                     id="name"
                     name="name"
                     placeholder="first name"
                     required={true}
                     onChange={(e) => setFirstname(e.target.value)}
-                />
-                <input
+                />}
+                {isSignUp && <input
                     type="name"
                     id="name"
                     name="name"
                     placeholder="last name"
                     required={true}
                     onChange={(e) => setLastname(e.target.value)}
-                />
+                />}
                 <input
                     type="email"
                     id="email"

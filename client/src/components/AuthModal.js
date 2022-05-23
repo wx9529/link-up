@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
 
 const AuthModal = ({ setShowModal, isSignUp }) => {
+
     const [firstname, setFirstname] = useState(null);
     const [lastname, setLastname] = useState(null);
     const [email, setEmail] = useState(null)
@@ -11,10 +12,9 @@ const AuthModal = ({ setShowModal, isSignUp }) => {
     const [confirmPassword, setConfirmPassword] = useState(null)
     const [error, setError] = useState(null)
     const [cookies, setCookie, removeCookie] = useCookies(null)
+  
 
     let navigate = useNavigate()
-
-    console.log(email, password, confirmPassword)
 
     const handleClick = () => {
         setShowModal(false);
@@ -65,6 +65,22 @@ const AuthModal = ({ setShowModal, isSignUp }) => {
                     required={true}
                     onChange={(e) => setLastname(e.target.value)}
                 />}
+                <input
+                    type="name"
+                    id="name"
+                    name="name"
+                    placeholder="first name"
+                    required={true}
+                    onChange={(e) => setFirstname(e.target.value)}
+                />
+                <input
+                    type="name"
+                    id="name"
+                    name="name"
+                    placeholder="last name"
+                    required={true}
+                    onChange={(e) => setLastname(e.target.value)}
+                />
                 <input
                     type="email"
                     id="email"

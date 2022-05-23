@@ -77,6 +77,21 @@ app.post('/login', async (req, res) => {
     console.log(err);
   }
 })
+app.get('/user', async (req, res) => {
+  const client = new MongoClient(url);
+  const userId = req.query.userId;
+  try {
+    await client.connect();
+    const database = client.db('app-data');
+    const users = database.collection('users');
+
+    const query = { user_id: userId };
+    const user = await users.findOne(query);
+    res.send(user);
+  } finally {
+    await client.close();
+  }
+})
 
 app.get('/users', async (req, res) => {
   const client = new MongoClient(url);
@@ -84,42 +99,12 @@ app.get('/users', async (req, res) => {
     await client.connect();
     const database = client.db('app-data');
     const users = database.collection('users');
-
-    const returnedUsers = await users.find().toArray();
-    res.send(returnedUsers);
+    const foundUsers = await users.find().toArray();
+    res.send(foundUsers);
   } finally {
     await client.close();
   }
 })
-
-
-// app.put('/user', async (req, res) => {
-//   const client = new MongoClient(url);
-//   const formData = req.body.formData;
-//   try {
-//     await client.connect();
-//     const database = client.db('app-data');
-//     const users = database.collection('users');
-
-//     const query = { user_id: formData.user_id };
-//     const updateDocument = {
-//       $set: {
-//         first_name: formData.first_name,
-//         matches: formData.matches,
-//         cars: [{
-//           model: formData.Model,
-//           year: formData.Year,
-//           price: formData.Price,
-//           url: formData.url
-//         }]
-//       },
-//     }
-//     const insertedUser = await users.updateOne(query, updateDocument);
-//     res.send(insertedUser);
-//   } finally {
-//     await client.close();
-//   }
-// })
 
 //Get all cars in the database
 app.get('/cars', async (req, res) => {
@@ -131,7 +116,6 @@ app.get('/cars', async (req, res) => {
     const users = database.collection('users');
     const query = { user_id: userId };
     const foundUsers = await users.findOne(query);
-    console.log('foundUsers', foundUsers);
     res.send(foundUsers)
   } finally {
     await client.close()
@@ -144,9 +128,6 @@ app.put('/cars', async (req, res) => {
   const userId = req.body.user_id;
   const formData = req.body.formData;
   const carId = req.body.id
-  console.log('userid', userId);
-  console.log('formData', formData);
-  console.log('carId', carId);
   try {
     await client.connect();
     const database = client.db('app-data');
@@ -172,7 +153,6 @@ app.put('/cars', async (req, res) => {
 //delete a car
 app.delete('/cars', async (req, res) => {
   const client = new MongoClient(url);
-  console.log('req.query', req.query);
   const userId = req.query.user_id;
   const carId = req.query.id;
   try {
@@ -184,8 +164,83 @@ app.delete('/cars', async (req, res) => {
       $pull: { "cars": { "id": carId } }
     }
     const user = await users.updateOne(query, updateDocument);
-    console.log('user', user);
     res.send(user);
+  } finally {
+    await client.close();
+  }
+})
+
+app.put('/addmatch', async (req, res) => {
+  const client = new MongoClient(url);
+  const { userId, matchedUserId } = req.body;
+
+  try {
+    await client.connect();
+    const database = client.db('app-data');
+    const users = database.collection('users');
+
+    const query = { user_id: userId };
+    const updateDocument = {
+      $push: { matches: { user_id: matchedUserId } }
+    }
+    const user = await users.updateOne(query, updateDocument);
+    res.send(user);
+  } finally {
+    await client.close();
+  }
+})
+
+app.get('/allUsers', async (req, res) => {
+  const client = new MongoClient(url);
+  const userIds = JSON.parse(req.query.userIds);
+  try {
+    await client.connect();
+    const database = client.db('app-data');
+    const users = database.collection('users');
+
+    const pipeline = [
+      {
+        '$match': {
+          'user_id': {
+            '$in': userIds
+          }
+        }
+      }
+    ]
+    const foundUsers = await users.aggregate(pipeline).toArray();
+    res.send(foundUsers);
+  } finally {
+    await client.close();
+  }
+})
+
+app.get('/messages', async (req, res) => {
+  const client = new MongoClient(url);
+  const { userId, correspondingUserId } = req.query;
+  try {
+    await client.connect();
+    const database = client.db('app-data');
+    const messages = database.collection('messages');
+    const query = {
+      from_userId: userId, to_userId: correspondingUserId
+    }
+    const foundMessages = await messages.find(query).toArray();
+    res.send(foundMessages);
+  } finally {
+    await client.close();
+  }
+
+})
+
+app.post('/message', async (req, res) => {
+  const client = new MongoClient(url);
+  const message = req.body.message;
+  try {
+    await client.connect();
+    const database = client.db('app-data');
+    const messages = database.collection('messages');
+    const insertedMessage = await messages.insertOne(message);
+    res.send(insertedMessage);
   } finally {
     await client.close();
   }

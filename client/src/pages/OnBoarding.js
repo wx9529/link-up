@@ -1,11 +1,6 @@
-import Nav from '../components/Nav';
 import { useEffect, useState } from 'react';
 import { useCookies } from 'react-cookie';
-import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import Car from '../components/Car';
-import Dashboard from './Dashboard';
-
 const OnBoarding = () => {
     const [cookies, setCookie, removeCookie] = useCookies(null)
     const [formData, setFormData] = useState({
@@ -15,14 +10,13 @@ const OnBoarding = () => {
         price: ''
     })
     const [cars, setCars] = useState([]);
-
+    const user_id = cookies.UserId;
     useEffect(() => {
         getCarInfo();
     }, [])
 
 
     const getCarInfo = async () => {
-        const user_id = cookies.UserId;
         try {
             const response = await axios.get('http://localhost:8000/cars', { params: { user_id } });
             console.log('response.data', response.data);
@@ -34,7 +28,6 @@ const OnBoarding = () => {
 
     const handleSubmit = async (e) => {
         console.log('submitted');
-        const user_id = cookies.UserId;
         const id = cars.length.toString();
         console.log('id', id);
         e.preventDefault();

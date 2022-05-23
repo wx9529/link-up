@@ -23,7 +23,7 @@ const Nav = ({ authToken, setShowModal, showModal, setIsSignUp }) => {
 
   return (
     <nav>
-      <a class="logo-container" href="http://localhost:3000/">
+      <a className="logo-container" href="http://localhost:3000/">
         <img className="logo" src={logo} />
       </a>
       {!authToken ? <button className="nav-button" onClick={handleSignIn} disabled={showModal}>

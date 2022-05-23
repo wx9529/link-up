@@ -4,15 +4,18 @@ import { useNavigate } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
 
 const AuthModal = ({ setShowModal, isSignUp }) => {
+    const [firstName, setFirstName] = useState(null)
+    const [lastName, setLastName] = useState(null)
     const [email, setEmail] = useState(null)
     const [password, setPassword] = useState(null)
     const [confirmPassword, setConfirmPassword] = useState(null)
     const [error, setError] = useState(null)
     const [cookies, setCookie, removeCookie] = useCookies(null)
+  
 
     let navigate = useNavigate()
 
-    console.log(email, password, confirmPassword)
+    console.log(firstName, email, password, confirmPassword)
 
     const handleClick = () => {
         setShowModal(false);
@@ -47,6 +50,22 @@ const AuthModal = ({ setShowModal, isSignUp }) => {
             <h2>{isSignUp ? 'CREATE ACCOUNT' : 'LOG IN'}</h2>
             <p>By clicking Log In, you agree to our terms. Learn how we process your data in our Privacy Policy and Cookie Policy.</p>
             <form onSubmit={handleSubmit}>
+                <input
+                    type="name"
+                    id="name"
+                    name="name"
+                    placeholder="first name"
+                    required={true}
+                    onChange={(e) => setFirstName(e.target.value)}
+                />
+                <input
+                    type="name"
+                    id="name"
+                    name="name"
+                    placeholder="last name"
+                    required={true}
+                    onChange={(e) => setLastName(e.target.value)}
+                />
                 <input
                     type="email"
                     id="email"

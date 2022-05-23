@@ -62,13 +62,18 @@ nav {
 nav .nav-button {
   height:70px;
   width:113px;
-  color: rgb(254, 48, 114);
-  background-color: rgb(255,255,255);
-  font-size: 20px;
+  color: #fff;
+    text-transform: uppercase;
+    font-size: 15px;
+    background: linear-gradient(45deg, rgb(254, 48, 114), rgb(255, 89, 64));
   padding: 10px 20px;
   border-radius: 10px;
   border: none;
   margin: 10px;
+}
+
+nav .nav-button:hover {
+  background: linear-gradient(260deg, rgb(254, 118, 114), rgb(255, 89, 64));
 }
 
 nav .nav-button:disabled {

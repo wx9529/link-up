@@ -1,32 +1,37 @@
-import { useState } from "react"
-import logo from "../images/tinder_logo_white.png"
-import { useCookies } from "react-cookie"
+import logo from "../images/logo3.png";
+import { useCookies } from "react-cookie";
+import {
+  Link
+} from "react-router-dom";
+
 
 const Nav = ({ authToken, setShowModal, showModal, setIsSignUp }) => {
   const [cookies, setCookie, removeCookie] = useCookies(['user']);
-
-  const handleClick = () => {
+  const handleSignOut = () => {
     if (authToken) {
       removeCookie('UserId', cookies.UserId);
       removeCookie('AuthToken', cookies.AuthToken);
-      window.location.reload();
       return
     }
     setShowModal(true);
-    setIsSignUp(false);
+    setIsSignUp(true);
+  }
+  const handleSignIn = () => {
+    setShowModal(true)
+    setIsSignUp(false)
   }
 
 
   return (
     <nav>
-      <a class="logo-container" href="http://localhost:3000/">
-        <img className="logo" src={logo} />
+      <a className="logo-container" href="http://localhost:3000/">
+        <img className="logo" src="../images/logo3.png" alt="logo" />
       </a>
 
-      {!authToken ? <button className="nav-button" onClick={handleClick} disabled={showModal}>
-        Log in</button> : <button className="nav-button" onClick={handleClick}>Sign Out</button>}
-    </nav>
+      {!authToken ? <button className="nav-button" onClick={handleSignIn} disabled={showModal}>
+        Log in</button> : <Link to="/"><button className="nav-button" onClick={handleSignOut}>Sign Out</button></Link>}
 
+    </nav>
   )
 }
 export default Nav

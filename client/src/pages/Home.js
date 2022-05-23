@@ -2,7 +2,6 @@ import Nav from '../components/Nav'
 import AuthModal from "../components/AuthModal"
 import { useState } from 'react'
 import { useCookies } from "react-cookie"
-import Individual from './Individual'
 
 const Home = () => {
     const [showModal, setShowModal] = useState(false);
@@ -24,7 +23,6 @@ const Home = () => {
         <div className="overlay">
             <Nav
                 authToken={authToken}
-                minimal={false}
                 setShowModal={setShowModal}
                 showModal={showModal}
                 setIsSignUp={setIsSignUp}

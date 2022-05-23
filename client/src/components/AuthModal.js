@@ -4,8 +4,9 @@ import { useNavigate } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
 
 const AuthModal = ({ setShowModal, isSignUp }) => {
-    const [firstName, setFirstName] = useState(null)
-    const [lastName, setLastName] = useState(null)
+
+    const [firstname, setFirstname] = useState(null);
+    const [lastname, setLastname] = useState(null);
     const [email, setEmail] = useState(null)
     const [password, setPassword] = useState(null)
     const [confirmPassword, setConfirmPassword] = useState(null)
@@ -14,8 +15,6 @@ const AuthModal = ({ setShowModal, isSignUp }) => {
   
 
     let navigate = useNavigate()
-
-    console.log(firstName, email, password, confirmPassword)
 
     const handleClick = () => {
         setShowModal(false);
@@ -28,7 +27,7 @@ const AuthModal = ({ setShowModal, isSignUp }) => {
                 setError('Passwords need to match!');
                 return;
             }
-            const response = await axios.post(`http://localhost:8000/${isSignUp ? 'signup' : 'login'}`, { email, password });
+            const response = await axios.post(`http://localhost:8000/${isSignUp ? 'signup' : 'login'}`, { email, password, firstname, lastname });
 
             setCookie('AuthToken', response.data.token);
             setCookie('UserId', response.data.userId);
@@ -50,13 +49,29 @@ const AuthModal = ({ setShowModal, isSignUp }) => {
             <h2>{isSignUp ? 'CREATE ACCOUNT' : 'LOG IN'}</h2>
             <p>By clicking Log In, you agree to our terms. Learn how we process your data in our Privacy Policy and Cookie Policy.</p>
             <form onSubmit={handleSubmit}>
+                {isSignUp && <input
+                    type="name"
+                    id="name"
+                    name="name"
+                    placeholder="first name"
+                    required={true}
+                    onChange={(e) => setFirstname(e.target.value)}
+                />}
+                {isSignUp && <input
+                    type="name"
+                    id="name"
+                    name="name"
+                    placeholder="last name"
+                    required={true}
+                    onChange={(e) => setLastname(e.target.value)}
+                />}
                 <input
                     type="name"
                     id="name"
                     name="name"
                     placeholder="first name"
                     required={true}
-                    onChange={(e) => setFirstName(e.target.value)}
+                    onChange={(e) => setFirstname(e.target.value)}
                 />
                 <input
                     type="name"
@@ -64,7 +79,7 @@ const AuthModal = ({ setShowModal, isSignUp }) => {
                     name="name"
                     placeholder="last name"
                     required={true}
-                    onChange={(e) => setLastName(e.target.value)}
+                    onChange={(e) => setLastname(e.target.value)}
                 />
                 <input
                     type="email"

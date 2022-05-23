@@ -25,7 +25,7 @@ const Dashboard = () => {
                 userId,
                 matchedUserId
             })
-            getAllUsers();
+            getUser();
         } catch (error) {
             console.log(error);
         }

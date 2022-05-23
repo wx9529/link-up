@@ -16,15 +16,15 @@ const MatchesDisplay = ({ matches, setclickedUser }) => {
   }
 
   useEffect(() => {
-    getMatches()
-  }, [])
+    getMatches();
+  }, [matches])
 
   console.log('matchedProfiles', matchedProfiles);
 
   return (
     <div className="matches-display">
-      {matchedProfiles?.map((match, _index) => (
-        <div key={{ _index }} className="match-card" onClick={() => setclickedUser(match)}>
+      {matchedProfiles?.map((match) => (
+        <div key={match.user_id} className="match-card" onClick={() => setclickedUser(match)}>
           <h3>{match?.firstname
           }</h3>
         </div>

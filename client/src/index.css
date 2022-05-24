@@ -18,9 +18,22 @@ h2 {
   font-family: 'Readex Pro', sans-serif;
 }
 
+.home-button {
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.home-button button {
+  margin: 10px;
+  width: 150px;
+  height: auto;
+}
+
 .primary-title {
   font-size: 90px;
   color: rgb(255, 255, 255);
+  margin-top: -90px;
 }
 
 .primary-button {

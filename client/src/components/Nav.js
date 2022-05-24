@@ -1,4 +1,3 @@
-import logo from "../img/example.png";
 import { useCookies } from "react-cookie";
 import {
   Link
@@ -24,7 +23,7 @@ const Nav = ({ authToken, setShowModal, showModal, setIsSignUp }) => {
   return (
     <nav>
       <a className="logo-container" href="http://localhost:3000/">
-        <img className="logo" src={logo} />
+        <img className="logo" src="https://github.com/wx9529/link-up/blob/client1/client/src/images/logo5-removebg-preview.png?raw=true" alt="logo" />
       </a>
       {!authToken ? <button className="nav-button" onClick={handleSignIn} disabled={showModal}>
         Log in</button> : <Link to="/"><button className="nav-button" onClick={handleSignOut}>Sign Out</button></Link>}

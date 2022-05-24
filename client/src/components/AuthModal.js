@@ -44,8 +44,10 @@ const AuthModal = ({ setShowModal, isSignUp }) => {
 
     return (
         <div className="auth-modal">
+            <div className="login-icon">
+                <img className="logo" src="https://github.com/wx9529/link-up/blob/client1/client/src/images/logo5-removebg-preview.png?raw=true" alt="logo" />
             <div className="close-icon" onClick={handleClick}>ⓧ</div>
-
+            </div>
             <h2>{isSignUp ? 'CREATE ACCOUNT' : 'LOG IN'}</h2>
             <p>By clicking Log In, you agree to our terms. Learn how we process your data in our Privacy Policy and Cookie Policy.</p>
             <form onSubmit={handleSubmit}>

@@ -18,7 +18,9 @@ const Chat = ({ descendingOrderMessages, user }) => {
                     <div key={_index}>
                         <div className="chat-message-header">
                             {message.name === user.firstname && <div className="send-message">
+                                <div className="sender">
                                 <p>{message.name}</p>
+                                </div>
                                 <div className="send-container">
                                 <p>{message.message}</p>
                                 </div>

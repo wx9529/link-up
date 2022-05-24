@@ -326,8 +326,10 @@ nav .logo-container .logo {
 }
 
 .send-message {
+  float:right;
+}
+.sender {
   text-align: right;
-  float: right;
 }
 
 .send-container {
@@ -343,6 +345,7 @@ nav .logo-container .logo {
 }
 
 .receive-container {
+  width: 70%;
   border: 1px ;
   border-radius: 10px;
   background-color: rgb(124, 124, 215);

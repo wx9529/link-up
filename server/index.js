@@ -1,4 +1,5 @@
-const PORT = 8000;
+const PORT = process.env.PORT || 8000;
+const host = '0.0.0.0';
 const express = require('express');
 const { MongoClient } = require('mongodb');
 const { v4: uuidv4 } = require('uuid');
@@ -12,6 +13,8 @@ const url = process.env.URL;
 const app = express();
 app.use(cors());
 app.use(express.json());
+
+app.listen(PORT, host, () => console.log('Server running on PORT ' + PORT));
 
 app.get('/', (req, res) => {
   res.json('Hello to my app');
@@ -246,4 +249,3 @@ app.post('/message', async (req, res) => {
   }
 })
 
-app.listen(PORT, () => console.log('Server running on PORT ' + PORT));

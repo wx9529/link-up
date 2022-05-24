@@ -27,7 +27,7 @@ const AuthModal = ({ setShowModal, isSignUp }) => {
                 setError('Passwords need to match!');
                 return;
             }
-            const response = await axios.post(`http://localhost:8000/${isSignUp ? 'signup' : 'login'}`, { email, password, firstname, lastname });
+            const response = await axios.post(`https://auto-deal-api.herokuapp.com/${isSignUp ? 'signup' : 'login'}`, { email, password, firstname, lastname });
 
             setCookie('AuthToken', response.data.token);
             setCookie('UserId', response.data.userId);
@@ -46,7 +46,7 @@ const AuthModal = ({ setShowModal, isSignUp }) => {
         <div className="auth-modal">
             <div className="login-icon">
                 <img className="logo" src="https://github.com/wx9529/link-up/blob/client1/client/src/images/logo5-removebg-preview.png?raw=true" alt="logo" />
-            <div className="close-icon" onClick={handleClick}>ⓧ</div>
+                <div className="close-icon" onClick={handleClick}>ⓧ</div>
             </div>
             <h2>{isSignUp ? 'CREATE ACCOUNT' : 'LOG IN'}</h2>
             <p>By clicking Log In, you agree to our terms. Learn how we process your data in our Privacy Policy and Cookie Policy.</p>

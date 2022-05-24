@@ -2,15 +2,6 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 
 const Chat = ({ descendingOrderMessages, user }) => {
-    // const url = 'http://localhost:8000/message';
-    // const [messages, setMessages] = useState([]);
-
-    // useEffect(() => {
-    //     axios.get(url).then(res => {
-    //         setMessages(res.data.message);
-    //     })
-    // }, [])
-
     return (
         <>
             <div className="chat-display">
@@ -19,10 +10,10 @@ const Chat = ({ descendingOrderMessages, user }) => {
                         <div className="chat-message-header">
                             {message.name === user.firstname && <div className="send-message">
                                 <div className="sender">
-                                <p>{message.name}</p>
+                                    <p>{message.name}</p>
                                 </div>
                                 <div className="send-container">
-                                <p>{message.message}</p>
+                                    <p>{message.message}</p>
                                 </div>
                             </div>}
                             {message.name !== user.firstname && <div className="receive-message">

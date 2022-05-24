@@ -6,7 +6,7 @@ const MatchesDisplay = ({ matches, setclickedUser }) => {
   const matchedUserIds = matches.map(({ user_id }) => user_id);
   const getMatches = async () => {
     try {
-      const response = await axios.get('http://localhost:8000/allUsers', {
+      const response = await axios.get('https://auto-deal-api.herokuapp.com/allUsers', {
         params: { userIds: JSON.stringify(matchedUserIds) }
       })
       setMatcheProfiles(response.data);

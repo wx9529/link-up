@@ -18,7 +18,7 @@ const OnBoarding = () => {
 
     const getCarInfo = async () => {
         try {
-            const response = await axios.get('http://localhost:8000/cars', { params: { user_id } });
+            const response = await axios.get('https://auto-deal-api.herokuapp.com/cars', { params: { user_id } });
             console.log('response.data', response.data);
             setCars([...response.data.cars]);
         } catch (err) {
@@ -32,7 +32,7 @@ const OnBoarding = () => {
         console.log('id', id);
         e.preventDefault();
         try {
-            const response = await axios.put('http://localhost:8000/cars', { formData, user_id, id });
+            const response = await axios.put('https://auto-deal-api.herokuapp.com/cars', { formData, user_id, id });
             console.log(response);
             const success = response.status === 200;
             const newCar = { ...formData, id };

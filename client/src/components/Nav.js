@@ -22,7 +22,7 @@ const Nav = ({ authToken, setShowModal, showModal, setIsSignUp }) => {
 
   return (
     <nav>
-      <a className="logo-container" href="http://localhost:3000/">
+      <a className="logo-container" href="https://auto-deal-app.herokuapp.com">
         <img className="logo" src="https://github.com/wx9529/link-up/blob/client1/client/src/images/logo5-removebg-preview.png?raw=true" alt="logo" />
       </a>
       {!authToken ? <button className="nav-button" onClick={handleSignIn} disabled={showModal}>

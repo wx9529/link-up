@@ -1,70 +1,28 @@
-# Getting Started with Create React App
+# Auto-Deal
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Heroku Link
 
-## Available Scripts
+https://auto-deal-app.herokuapp.com
 
-In the project directory, you can run:
+# Project Description
 
-### `npm start`
+Auto-Deal, a full stack application best described as “Tinder for Cars, putting the mobile car shopping experience in the fast lane with the swipeable mobile search application for buying and selling vehicles. It built with the latest tools and techniques for optimized user experience. The App utilizes React for front-end and Node.js for back-end, allows users to add, edit and delete their car as well as browser cars from other sellers. Data is persisted by the API server using a MongoDB database.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+# Project View
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+<img width="957" alt="project1" src="https://user-images.githubusercontent.com/90943037/174667347-beff1447-d4e2-431c-a85d-f232713f2fc0.PNG">
+<img width="922" alt="project2" src="https://user-images.githubusercontent.com/90943037/174667372-54c976cf-b60d-4586-a588-a73823d525c8.PNG">
+<img width="905" alt="project3" src="https://user-images.githubusercontent.com/90943037/174667378-83725acd-f2cb-47e6-b296-4b7970525b1e.PNG">
+<img width="780" alt="project4" src="https://user-images.githubusercontent.com/90943037/174667390-97ff1b2a-68c2-4c80-8912-ced916e368fa.PNG">
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+# Project Stack
 
-### `npm run build`
+Front-End: React, Axios, JSX, HTML, CSS, JavaScript
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Back-End: Express, Node.js, MongoDB
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+# API server/*Database
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+The Server has been pushed to Heroku as well
+https://auto-deal-api.herokuapp.com
